@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wirerio - Sketch to Site (Modern Layout - v2 No Demo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Beige Theme - Refined "Claude-like" softness */
+        :root {
+            --primary-color: #c0a062;  /* Softer Goldenrod/Beige */
+            --primary-dark: #9a804f;   /* Darker version for hover */
+            --secondary-color: #d2b48c; /* Tan - Lighter accent */
+            --background-color: #fdfaf5; /* Very light beige background */
+            --card-background: #ffffff; /* White for cards */
+            --text-color: #6b5a44;     /* Warm brown text */
+            --heading-color: #4a3c2a;  /* Darker brown heading */
+            --border-color: #ede5d7;   /* Lighter/softer border */
+            --shadow-color: rgba(80, 60, 40, 0.05); /* Softer warm shadow */
+            --animation-speed: 0.3s;
+            --button-color: var(--primary-color);
+            --button-hover: var(--primary-dark);
+            --accent-light: #faf0e6;   /* Linen - Light accent background */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Enable smooth scrolling */
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        /* Layout & Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto 4rem auto; /* Adjusted margin */
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-background);
+            color: var(--heading-color);
+            padding: 1.5rem 0; /* Slightly reduced padding */
+            text-align: center;
+            box-shadow: 0 2px 10px var(--shadow-color); /* Softened shadow */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem; /* Slightly reduced size */
+            color: var(--primary-color);
+        }
+
+        header p {
+            font-size: 1.05rem; /* Slightly reduced size */
+            opacity: 0.8;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        /* Main Workflow Section Styling */
+        #main-workflow {
+            background-color: var(--card-background);
+            margin-bottom: 3rem;
+            padding: 2.5rem 3rem; /* Increased padding */
+            border-radius: 16px; /* Slightly more rounded */
+            box-shadow: 0 8px 25px var(--shadow-color); /* Slightly more prominent shadow for main section */
+            border: 1px solid var(--border-color);
+        }
+
+        #main-workflow > h2 { /* Style the main H2 */
+             color: var(--heading-color);
+             margin-bottom: 2.5rem;
+             padding-bottom: 0.8rem;
+             border-bottom: 2px solid var(--primary-color);
+             display: inline-block;
+             font-family: 'Playfair Display', Georgia, serif;
+             font-weight: 600;
+             font-size: 1.9rem;
+        }
+
+        .workflow-step {
+            margin-bottom: 3.5rem; /* Increased margin between steps */
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color); /* Subtle separator */
+        }
+        .workflow-step:first-child {
+            border-top: none; /* No border for the first step */
+            padding-top: 0;
+        }
+        /* Remove bottom margin from the last step */
+        .workflow-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .workflow-step h3 {
+            color: var(--heading-color);
+            margin-top: 1.5rem; /* Adjust top margin */
+            margin-bottom: 1.5rem; /* Increase bottom margin */
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            font-size: 1.6rem; /* Slightly increased size */
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        /* General Content Styles within Workflow */
+        .workflow-step p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+        .workflow-step p small {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        .workflow-step label {
+            margin-top: 0.5rem; /* Add space above labels */
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--heading-color); /* Ensure labels use heading color */
+        }
+
+        /* List styling */
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem; /* Add margin below lists */
+        }
+
+        ul li {
+            margin-bottom: 1rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--button-color);
+            color: white;
+            padding: 0.8rem 1.6rem; /* Slightly adjusted padding */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.95rem; /* Slightly adjusted size */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            transition: all var(--animation-speed) ease;
+            margin: 0.5rem 0.3rem 1rem 0; /* Adjusted margin */
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(80, 60, 40, 0.1); /* Adjusted shadow */
+        }
+        .btn:not(:disabled):hover,
+        .btn:not(:disabled):focus {
+            background-color: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(80, 60, 40, 0.15);
+            outline: none;
+        }
+
+        .btn-secondary {
+            background-color: var(--card-background);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        .btn-secondary:not(:disabled):hover,
+        .btn-secondary:not(:disabled):focus {
+            background-color: var(--accent-light);
+            color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn:disabled {
+            background-color: #ede5d7; /* Use lighter border color */
+            color: #b3a99a; /* Adjusted text color */
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            border: 1px solid #e0d8c7; /* Slightly darker border */
+        }
+
+        /* Form Elements */
+        input[type="file"],
+        input[type="text"],
+        textarea {
+            display: block;
+            width: 100%;
+            padding: 0.9rem; /* Adjusted padding */
+            margin-bottom: 1.2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #ffffff;
+            color: var(--text-color);
+            transition: border-color var(--animation-speed) ease, box-shadow var(--animation-speed) ease;
+            box-shadow: inset 0 1px 3px rgba(80, 60, 40, 0.05); /* Subtle inset shadow */
+        }
+        input:disabled, textarea:disabled {
+            background-color: #f8f6f2; /* Light background for disabled */
+            cursor: not-allowed;
+        }
+
+        input[type="file"] {
+            padding: 0.7rem;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(192, 160, 98, 0.2); /* Adjusted focus glow */
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        /* Visually hidden class for accessibility */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Upload Area Styling */
+        .upload-container {
+            width: 100%;
+            margin: 1rem 0 2rem 0; /* Adjusted margin */
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 2rem; /* Adjusted padding */
+            text-align: center; /* Centers inline/inline-block children */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--background-color);
+        }
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--primary-color);
+            background-color: var(--accent-light);
+        }
+
+        .upload-icon {
+            width: 80px; /* Slightly smaller */
+            height: 80px;
+            background-color: rgba(192, 160, 98, 0.1); /* Adjusted primary color alpha */
+            border-radius: 50%;
+            margin: 0 auto 1rem; /* Adjusted margin */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .upload-icon svg {
+            width: 40px; /* Slightly smaller */
+            height: 40px;
+            fill: var(--primary-color);
+        }
+
+        #drop-area {
+            position: relative; /* For absolute positioning of children */
+        }
+
+        .upload-title { /* The H3 */
+            text-align: center;
+            font-size: 1.4rem; /* Adjusted size */
+            color: var(--heading-color);
+            margin-bottom: 0.8rem;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            display: block;
+        }
+
+        /* Style for the label acting as a button */
+        .select-file-btn {
+             display: inline-block; /* Allow centering via parent text-align */
+             background-color: var(--button-color);
+             color: white;
+             padding: 0.6rem 1.2rem;
+             border-radius: 6px;
+             cursor: pointer;
+             font-size: 0.9rem;
+             font-weight: 500;
+             margin-top: 0.5rem; /* Space above */
+             transition: background-color var(--animation-speed) ease;
+        }
+        .select-file-btn:hover {
+             background-color: var(--button-hover);
+        }
+
+        .file-info {
+            color: #b3a99a; /* Adjusted color */
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center; /* Ensure this text is centered */
+        }
+
+        .file-input { /* Keep hidden */
+            position: absolute; width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; z-index: -1;
+        }
+
+        /* Specific App Sections Styling */
+        #sketch-preview {
+            max-width: 100%;
+            max-height: 300px;
+            width: auto;
+            margin: 1.5rem auto; /* Center preview */
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            background-color: white;
+            display: block; /* Keep as block */
+            opacity: 0; /* Start hidden for fade-in */
+            transition: opacity 0.4s ease-in-out, max-height 0.4s ease-in-out; /* Add max-height transition */
+            object-fit: contain; /* Ensure image content scales nicely */
+            visibility: hidden; /* Use visibility to hide while maintaining layout space */
+            max-height: 0; /* Collapse height when hidden */
+            overflow: hidden;
+        }
+        #sketch-preview[src]:not([src="#"]) {
+             opacity: 1; /* Fade in when src is valid */
+             visibility: visible;
+             max-height: 300px; /* Allow height again */
+        }
+
+        /* Placeholder area within display divs */
+        .placeholder-area {
+            min-height: 170px;
+            width: 100%;
+            border: 2px dashed var(--border-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b3a99a;
+            font-style: italic;
+            padding: 1.5rem;
+            text-align: center;
+            background-color: rgba(253, 250, 245, 0.7);
+        }
+        /* Adjustments for placeholder inside specific containers */
+        #wireframe-display .placeholder-area {
+            margin: 0;
+            min-height: 250px;
+        }
+
+        /* Output Areas (Shared Styling) */
+        .output-area {
+            margin: 1.5rem 0; /* Consistent margin */
+            padding: 1.5rem;
+            background-color: var(--background-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            white-space: pre-wrap; /* Keep wrapping */
+            word-wrap: break-word; /* Break long words if necessary */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 70px;
+            transition: all var(--animation-speed) ease;
+            font-size: 0.95em;
+            color: var(--text-color);
+            line-height: 1.7;
+            box-shadow: inset 0 1px 4px rgba(80, 60, 40, 0.06); /* Subtle inset shadow */
+        }
+        .output-area.loading {
+            color: var(--primary-dark); /* Match theme */
+            font-style: italic;
+            background: repeating-linear-gradient(
+                -45deg,
+                rgba(250, 240, 230, 0.5),
+                rgba(250, 240, 230, 0.5) 10px,
+                rgba(253, 250, 245, 0.5) 10px,
+                rgba(253, 250, 245, 0.5) 20px
+            ); /* Subtle loading background */
+        }
+        .output-area.error {
+            background-color: #FFF0F0;
+            color: #C04040;
+            border-color: #F5C6C6;
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        /* Chat interface */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem; /* Slightly reduced gap */
+            margin-top: 1rem;
+            max-height: 400px; /* Adjusted height */
+            overflow-y: auto;
+            padding: 1rem; /* Adjusted padding */
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background-color: var(--background-color);
+        }
+
+        .chat-message {
+            padding: 0.8rem 1rem; /* Adjusted padding */
+            border-radius: 10px;
+            max-width: 85%;
+            line-height: 1.6;
+            font-size: 0.9rem; /* Slightly smaller */
+            box-shadow: 0 1px 2px var(--shadow-color); /* Softer shadow */
+            word-wrap: break-word; /* Allow long words/URLs to break */
+        }
+        .user-message { align-self: flex-end; background-color: var(--primary-color); color: white; border: none; }
+        .ai-message { align-self: flex-start; background-color: var(--card-background); border: 1px solid var(--border-color); color: var(--text-color); }
+        .ai-message.loading { font-style: italic; color: var(--primary-dark); } /* Loading style for AI message */
+        .ai-message.error { background-color: #fff0f0; color: #c04040; border-color: #f5c6c6; font-weight: 500; } /* Error style for AI message */
+
+        .chat-input-container { display: flex; margin-top: 1rem; gap: 0.7rem; align-items: flex-end; } /* Align items bottom */
+        .chat-input { flex-grow: 1; margin-bottom: 0; /* Remove bottom margin inherited from textarea rule */ }
+
+        /* Wireframe display area */
+        #wireframe-display {
+            margin: 2rem 0;
+            padding: 1rem; /* Reduced padding slightly */
+            background-color: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            min-height: 300px; /* Adjusted height */
+            display: flex; /* Keep flex for centering */
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            overflow: hidden; /* Keep overflow hidden */
+        }
+        /* The div that gets the SVG innerHTML */
+        #wireframe-suggestions {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #wireframe-suggestions.loading,
+        #wireframe-suggestions.error {
+             font-style: italic;
+             color: #999;
+             padding: 1rem;
+        }
+         #wireframe-suggestions.error {
+             color: #C04040;
+             font-weight: 500;
+        }
+
+        #wireframe-display svg {
+            display: block; /* Make sure SVG is treated as block */
+            max-width: 100%;
+            max-height: calc(300px - 2rem); /* Ensure it fits within padding */
+            /* Default stroke/fill if AI doesn't provide */
+            stroke: #777;
+            fill: #f0f0f0;
+        }
+
+        /* Code output styling */
+        #code-output-preview {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            text-align: left;
+            background: #2a251e; /* Dark brown background */
+            color: #e0d8c7; /* Light beige text */
+            font-size: 0.9em;
+            min-height: 300px; /* Adjusted height */
+            max-height: 500px; /* Adjusted height */
+            overflow: auto; /* Changed to auto */
+            border-radius: 10px;
+            line-height: 1.6;
+            tab-size: 2;
+            white-space: pre; /* Use pre for code formatting */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #4a3c2a; /* Border matching heading color */
+        }
+        #code-output-preview .error { /* Style errors within code block */
+            color: #ff9a9a;
+            background-color: rgba(255, 0, 0, 0.1);
+            display: block;
+            padding: 0.5em;
+            white-space: pre-wrap; /* Allow error messages to wrap */
+        }
+
+        /* Streaming animation cursor */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .cursor { display: inline-block; width: 8px; height: 1.2em; background-color: #e0d8c7; animation: blink 1s step-end infinite; vertical-align: text-bottom; margin-left: 2px; }
+        #code-output-preview .cursor { background-color: #e0d8c7; /* Ensure cursor matches text */ }
+
+        /* Secondary Info Grid */
+        .secondary-info-grid {
+            display: grid;
+            /* Adjusted grid to handle 3 items more gracefully if needed */
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); /* Slightly smaller min size */
+            gap: 2rem; /* Gap between cards */
+            margin-top: 3rem; /* Space above the grid */
+        }
+
+        .info-card {
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: 12px; /* Consistent rounding */
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px var(--shadow-color); /* Softer shadow for cards */
+            transition: transform var(--animation-speed) ease, box-shadow var(--animation-speed) ease;
+        }
+        .info-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(80, 60, 40, 0.08); }
+
+        .info-card h2 { /* Different H2 style for cards */
+            color: var(--heading-color);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--secondary-color); /* Use secondary color border */
+            display: inline-block;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            font-size: 1.4rem; /* Smaller H2 */
+        }
+        .info-card p, .info-card ul { font-size: 0.95rem; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem; /* Increased margin */
+            background-color: var(--heading-color);
+            color: var(--accent-light); /* Use light accent for text */
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { width: 95%; margin: 1.5rem auto 3rem auto; }
+            #main-workflow { padding: 2rem 1.5rem; }
+            .workflow-step h3 { font-size: 1.4rem; gap: 0.6rem; }
+            .step-number { width: 25px; height: 25px; font-size: 0.9rem; }
+            .secondary-info-grid { grid-template-columns: 1fr; gap: 1.5rem; } /* Stack cards */
+            .info-card { padding: 1.5rem; }
+            .info-card h2 { font-size: 1.3rem; }
+            header h1 { font-size: 1.8rem; }
+            header p { font-size: 1rem; }
+            .btn { width: 100%; margin-right: 0; margin-left: 0; /* Ensure full width buttons take full space */ }
+            .chat-input-container { flex-direction: column; align-items: stretch; } /* Stack chat input/button */
+            .chat-input-container .btn { margin: 0; } /* Remove btn margins in stacked view */
+        }
+        @media (max-width: 480px) {
+            #main-workflow { padding: 1.5rem 1rem; }
+            .workflow-step h3 { font-size: 1.3rem; }
+            .info-card { padding: 1.2rem; }
+            .info-card h2 { font-size: 1.2rem; }
+            header h1 { font-size: 1.6rem; }
+            #code-output-preview { font-size: 0.85em; }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #main-workflow, .info-card, footer { opacity: 0; animation: fadeIn 0.7s ease-out forwards; }
+        #main-workflow { animation-delay: 0.1s; }
+        .secondary-info-grid { opacity: 0; animation: fadeIn 0.7s 0.3s ease-out forwards; }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Wirerio</h1>
+        <p>From Sketch to Site</p>
+    </header>
+
+    <div class="container">
+
+        <section id="main-workflow">
+            <h2>Bring Your Vision to Life</h2>
+
+            <div id="step-capture" class="workflow-step">
+                <h3><span class="step-number">1</span>Upload & Analyze Sketch</h3>
+                 <p>Start by uploading a clear photo of your hand-drawn website or app sketch.</p>
+                 <div class="upload-container">
+                     <div id="drop-area" class="upload-area" role="button" tabindex="0" aria-label="Drag and drop or click to select sketch file">
+                         <div class="upload-icon" aria-hidden="true">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                         </div>
+                         <h3 class="upload-title">Drag & Drop or Select File</h3>
+                         <label for="sketch-upload" class="select-file-btn">Select File</label>
+                         <input type="file" id="sketch-upload" class="file-input" accept="image/*">
+                         <p class="file-info">Images up to 5MB</p>
+                     </div>
+                 </div>
+                 <img id="sketch-preview" src="#" alt="Preview of uploaded sketch" />
+                 <button id="recognize-btn" class="btn" disabled>Analyze Sketch with AI</button>
+                 <p><small><em>Note: AI will describe the elements and layout in the sketch.</em></small></p>
+            </div>
+
+            <div id="step-brainstorm" class="workflow-step">
+                 <h3><span class="step-number">2</span>AI Description & Wireframe Ideas</h3>
+                 <p>Review the AI's description of your sketch elements and the initial wireframe concept generated below.</p>
+                 <label for="sketch-description-output">AI Sketch Description:</label>
+                 <div id="sketch-description-output" class="output-area" aria-live="polite">
+                     Upload a sketch and click "Analyze Sketch" above. AI description will appear here...
+                 </div>
+                 <label for="wireframe-display">Initial Wireframe Suggestion:</label>
+                 <div id="wireframe-display" aria-live="polite">
+                     <div id="wireframe-suggestions" class="placeholder-area">
+                         After analyzing your sketch, an AI-generated wireframe suggestion will appear here...
+                     </div>
+                 </div>
+                 <button id="proceed-to-refine" class="btn btn-secondary" disabled>Proceed to Refine Wireframe</button>
+            </div>
+
+            <div id="step-refine" class="workflow-step" style="display: none;">
+                 <h3><span class="step-number">3</span>Refine & Detail via Chat</h3>
+                 <p>Discuss your wireframe with the AI assistant. Ask for changes, suggest components, or explore layout variations.</p>
+
+                 <div id="chat-container" class="chat-container" aria-live="polite">
+                     </div>
+
+                 <div class="chat-input-container">
+                     <label for="chat-input" class="visually-hidden">Your refinement request:</label>
+                     <textarea id="chat-input" class="chat-input" placeholder="e.g., 'Make the header smaller', 'Add a search bar'..." disabled></textarea>
+                     <button id="send-chat" class="btn" disabled>Send</button>
+                 </div>
+
+                 <button id="finalize-wireframe" class="btn btn-secondary" disabled>Finalize Wireframe Design</button>
+            </div>
+
+            <div id="step-generate" class="workflow-step" style="opacity: 0.6;">
+                 <h3><span class="step-number">4</span>Generate & Export Code</h3>
+                 <p>Once you're satisfied with the refined design, generate the front-end code.</p>
+                 <button id="generate-html-css" class="btn" disabled>Generate HTML/CSS/JS</button>
+                 <button id="export-code" class="btn btn-secondary" disabled>Export (index.html)</button>
+                 <label for="code-output-preview">Generated Code Preview:</label>
+                 <div id="code-output-preview" aria-live="polite"><span style="color:#a89b85;">/* Code output will appear here after generation... */</span></div>
+            </div>
+        </section>
+
+        <div class="secondary-info-grid">
+            <div id="features" class="info-card">
+                <h2>Key Features</h2>
+                <ul>
+                    <li><strong>Sketch Analysis:</strong> AI describes UI elements & layout from images.</li>
+                    <li><strong>Wireframe Generation:</strong> Automated conversion to initial SVG wireframes.</li>
+                    <li><strong>AI-Powered Refinement:</strong> Iterative design improvements via chat.</li>
+                    <li><strong>Code Generation:</strong> Export refined designs to HTML/CSS/JS.</li>
+                    <li><strong>Collaboration Hints:</strong> (Concept) Store versions & get suggestions.</li>
+                    <li><strong>Learning Path:</strong> (Concept) Integrated tutorials & best practices.</li>
+                </ul>
+            </div>
+
+            <div id="target-users" class="info-card">
+                <h2>Target Users</h2>
+                 <ul>
+                    <li>UX/UI Designers</li>
+                    <li>Product Managers</li>
+                    <li>Developers (for quick prototypes)</li>
+                    <li>Entrepreneurs & Startups</li>
+                    <li>Students & Educators</li>
+                    <li>Anyone needing rapid visualization</li>
+                </ul>
+            </div>
+
+            <div id="differentiation" class="info-card">
+                 <h2>Why Wirerio?</h2>
+                 <p>Wirerio uniquely focuses on bridging the gap between initial, informal hand-drawn sketches and functional digital prototypes using AI, making web creation more accessible regardless of technical skill.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Wirerio Concept. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        // Import the library
+        import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "https://esm.run/@google/generative-ai";
+
+        // --- Configuration ---
+        // <<< WARNING: DO NOT PUSH THIS KEY TO PUBLIC REPOSITORIES! >>>
+        // <<< Use environment variables or a backend proxy in production for security. >>>
+        const API_KEY = "AIzaSyCTyBJ5dQZoWWgB14Wjd0l7heigxDRT-qs"; // Replace with your actual key ONLY for local testing
+
+        // Model Selection
+        // const MODEL_NAME = "gemini-2.5-pro-exp-03-25"; // Or other suitable model
+        const MODEL_NAME = "gemini-2.0-flash"; // Or other suitable model
+
+        // --- DOM Element References ---
+        // Workflow Steps Containers
+        const stepCapture = document.getElementById('step-capture');
+        const stepBrainstorm = document.getElementById('step-brainstorm');
+        const stepRefine = document.getElementById('step-refine');
+        const stepGenerate = document.getElementById('step-generate');
+
+        // Step 1 Elements
+        const dropArea = document.getElementById('drop-area');
+        const sketchUpload = document.getElementById('sketch-upload');
+        const sketchPreview = document.getElementById('sketch-preview');
+        const recognizeBtn = document.getElementById('recognize-btn');
+
+        // Step 2 Elements
+        const sketchDescriptionOutput = document.getElementById('sketch-description-output');
+        const wireframeSuggestions = document.getElementById('wireframe-suggestions'); // The div for SVG content
+        const wireframeDisplay = document.getElementById('wireframe-display'); // The outer container
+        const proceedToRefineBtn = document.getElementById('proceed-to-refine');
+
+        // Step 3 Elements
+        const chatContainer = document.getElementById('chat-container');
+        const chatInput = document.getElementById('chat-input');
+        const sendChatBtn = document.getElementById('send-chat');
+        const finalizeWireframeBtn = document.getElementById('finalize-wireframe');
+
+        // Step 4 Elements
+        const generateHtmlCssBtn = document.getElementById('generate-html-css');
+        const exportCodeBtn = document.getElementById('export-code');
+        const codeOutputPreview = document.getElementById('code-output-preview');
+
+        // --- State Variables ---
+        let uploadedFile = null;
+        let sketchDescription = "";
+        let chatHistory = [];
+        let wireframeData = null; // Holds the *valid* SVG string if generated
+        let generatedCode = "";
+
+        // --- AI Initialization ---
+        let genAI;
+        let model;
+        try {
+            if (!API_KEY || API_KEY === "YOUR_API_KEY_HERE" || API_KEY.length < 30) { // Basic length check
+                 throw new Error("API Key is missing, invalid, or placeholder.");
+            }
+            genAI = new GoogleGenerativeAI(API_KEY);
+            model = genAI.getGenerativeModel({ model: MODEL_NAME });
+            console.log("Gemini AI Initialized successfully with model:", MODEL_NAME);
+        } catch (error) {
+            console.error("CRITICAL: Failed to initialize GoogleGenerativeAI:", error);
+            // Display error prominently to the user
+            const errorMsg = `Error: Could not initialize AI Service. ${error.message}. Check API Key/Model & console. Features requiring AI will be disabled.`;
+            // Show in multiple places if possible
+            if(sketchDescriptionOutput) {
+                 sketchDescriptionOutput.textContent = errorMsg;
+                 sketchDescriptionOutput.classList.add('error');
+            }
+            // Disable buttons dependent on AI
+            if(recognizeBtn) recognizeBtn.disabled = true;
+            alert(errorMsg); // Alert user as well
+        }
+
+        // --- Safety & Generation Config ---
+        const generationConfig = { temperature: 0.7, topK: 1, topP: 1, maxOutputTokens: 2048 };
+        const codeGenerationConfig = { temperature: 0.4, topK: 1, topP: 1, maxOutputTokens: 8192 }; // Increased for code
+        const safetySettings = [
+            { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+            { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+            { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+            { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+        ];
+
+        // --- UI Helper Functions ---
+        function showStep(stepElement) {
+            if (stepElement) {
+                stepElement.style.display = 'block'; // Make sure it's block
+                // Use setTimeout to allow display:block to apply before changing opacity
+                setTimeout(() => {
+                    stepElement.style.opacity = '1';
+                }, 10); // Small delay
+            }
+        }
+
+        function hideStep(stepElement) {
+             if (stepElement) {
+                 stepElement.style.opacity = '0';
+                 // Optionally set display:none after transition if needed, but opacity is often enough
+                 // setTimeout(() => { stepElement.style.display = 'none'; }, 300); // Match animation speed
+             }
+        }
+        function fadeStep(stepElement) {
+             if (stepElement) {
+                 stepElement.style.opacity = '0.6'; // Fade for inactive steps
+             }
+        }
+
+        // Reset UI elements to initial state for subsequent steps
+        function resetWorkflowSteps() {
+            // Reset Step 2 outputs
+            if (sketchDescriptionOutput) {
+                sketchDescriptionOutput.textContent = 'Upload a sketch and click "Analyze Sketch" above. AI description will appear here...';
+                sketchDescriptionOutput.classList.remove('error', 'loading');
+            }
+            if (wireframeSuggestions) {
+                wireframeSuggestions.innerHTML = ''; // Clear previous SVG
+                wireframeSuggestions.classList.remove('loading', 'error');
+                wireframeSuggestions.classList.add('placeholder-area'); // Add back placeholder class
+                wireframeSuggestions.textContent = 'Wireframe suggestions will appear here after analysis...'; // Reset text
+            }
+             if (proceedToRefineBtn) proceedToRefineBtn.disabled = true;
+
+            // Hide & Reset Step 3
+            if(stepRefine) stepRefine.style.display = 'none'; // Hide it
+            if (chatContainer) chatContainer.innerHTML = ''; // Clear chat messages
+            if (chatInput) {
+                chatInput.value = '';
+                chatInput.disabled = true;
+            }
+            if(sendChatBtn) sendChatBtn.disabled = true;
+            if(finalizeWireframeBtn) finalizeWireframeBtn.disabled = true;
+
+            // Fade & Reset Step 4
+            if(stepGenerate) fadeStep(stepGenerate);
+            if (codeOutputPreview) codeOutputPreview.innerHTML = '<span style="color:#a89b85;">/* Code output will appear here... */</span>';
+            if(generateHtmlCssBtn) generateHtmlCssBtn.disabled = true;
+            if(exportCodeBtn) exportCodeBtn.disabled = true;
+
+            // Reset state variables related to workflow
+            sketchDescription = "";
+            chatHistory = [];
+            wireframeData = null;
+            generatedCode = "";
+            console.log("Workflow steps reset.");
+        }
+
+        // Reset file input and associated elements
+        function resetUploadState() {
+            uploadedFile = null;
+            if (sketchUpload) sketchUpload.value = ''; // Clear the file input selection
+            if (sketchPreview) sketchPreview.src = '#'; // Reset preview src, triggers CSS hide
+            if (recognizeBtn) recognizeBtn.disabled = true; // Disable analyze button
+            resetWorkflowSteps(); // Reset all subsequent steps
+             console.log("Upload state reset.");
+        }
+
+        // --- Drag and Drop Functionality ---
+        if (dropArea) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            ['dragenter', 'dragover'].forEach(eventName => dropArea.addEventListener(eventName, () => dropArea.classList.add('dragover'), false));
+            ['dragleave', 'drop'].forEach(eventName => dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragover'), false));
+            dropArea.addEventListener('drop', handleDrop, false);
+            // Allow activation via click/enter key
+            dropArea.addEventListener('click', () => sketchUpload?.click()); // Added optional chaining
+            dropArea.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') sketchUpload?.click(); });
+
+        } else {
+            console.error("#drop-area element not found!");
+        }
+
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt?.files; // Optional chaining
+            if (files && files.length) {
+                if (sketchUpload) sketchUpload.files = files; // Assign dropped files to input
+                handleFiles(files);
+            }
+        }
+
+        // Process selected/dropped file
+        function handleFiles(files) {
+            const file = files?.[0]; // Optional chaining
+            const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+            if (file && file.type.startsWith('image/')) {
+                if (file.size > MAX_FILE_SIZE) {
+                    alert(`File is too large (Max ${MAX_FILE_SIZE / 1024 / 1024}MB). Please choose a smaller image.`);
+                    resetUploadState();
+                    return;
+                }
+                uploadedFile = file;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    if(sketchPreview) sketchPreview.src = e.target.result; // Set preview src
+                    if(recognizeBtn) recognizeBtn.disabled = false; // Enable analyze button
+                    resetWorkflowSteps(); // Reset subsequent steps for the new image
+                    if(sketchDescriptionOutput) sketchDescriptionOutput.textContent = 'Sketch uploaded. Ready to analyze.'; // Update status
+                    console.log(`File "${file.name}" loaded for preview.`);
+                }
+                reader.onerror = (err) => {
+                    console.error("FileReader error:", err);
+                    alert("Error reading file.");
+                    resetUploadState();
+                };
+                reader.readAsDataURL(file);
+            } else if (file) { // If a file exists but is not an image
+                alert("Please select a valid image file (e.g., JPG, PNG).");
+                resetUploadState();
+            }
+            // Implicit else: No file selected/dropped, do nothing or resetUploadState() if desired
+        }
+
+        // --- Helper Functions ---
+
+        // Convert file to base64 generative part
+        async function fileToGenerativePart(file) {
+            return new Promise((resolve, reject) => { // Simplified promise structure
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    if (typeof reader.result === 'string' && reader.result.includes(',')) {
+                        resolve({ inlineData: { data: reader.result.split(',')[1], mimeType: file.type } });
+                    } else {
+                        reject(new Error("Failed to read file as Data URL or invalid format."));
+                    }
+                };
+                reader.onerror = (error) => {
+                    console.error("FileReader error in fileToGenerativePart:", error);
+                    reject(error);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Add chat message to UI and optionally to history
+        function addChatMessage(message, isUser = false, addToHistory = true, isError = false) {
+            if (!chatContainer) return; // Safety check
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+            messageElement.classList.add(isUser ? 'user-message' : 'ai-message');
+            if (isError && !isUser) { messageElement.classList.add('error'); }
+            else if (!isUser && message.toLowerCase().includes("thinking...")) { messageElement.classList.add('loading'); }
+
+            messageElement.textContent = message; // Use textContent for security
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' }); // Scroll to bottom
+
+            // Add to history state only if it's not an error/loading message
+            if (addToHistory && !isError && !messageElement.classList.contains('loading')) {
+                chatHistory.push({ role: isUser ? "user" : "model", message: message });
+            }
+            return messageElement;
+        }
+
+       // Generate SVG wireframe suggestion
+       async function generateWireframeSuggestion(description) {
+           console.log("Attempting to generate wireframe for description:", description);
+           if (!wireframeSuggestions) { console.error("Target element #wireframe-suggestions not found!"); return null; }
+
+           wireframeSuggestions.classList.remove('placeholder-area', 'error');
+           wireframeSuggestions.classList.add('loading');
+           wireframeSuggestions.innerHTML = 'Generating wireframe visualization...';
+
+           try {
+               const prompt = `Based on this UI description, create a simple wireframe SVG diagram (viewBox="0 0 800 600"). Use basic shapes (rect, circle, line, text), grayscale colors (e.g., #bbb border, #eee fill, #666 text), and minimal styling.
+
+IMPORTANT POSITIONING INSTRUCTIONS:
+1. ACCURATELY represent the described layout - pay special attention to LEFT, RIGHT, TOP, BOTTOM positioning
+2. If description mentions a sidebar on the LEFT, place it on the LEFT side of the wireframe
+3. If description mentions a sidebar on the RIGHT, place it on the RIGHT side of the wireframe
+4. Maintain proper spatial relationships between all elements as described
+5. Use proper proportions for elements based on their described size (large, medium, small)
+6. Include text labels for key elements as specified in the description
+
+Description: ${description}
+
+IMPORTANT: Respond ONLY with the valid SVG code block, starting with <svg> and ending with </svg>. Do NOT include explanations, comments, or markdown formatting (\`\`\`).`;
+
+               console.log("Sending SVG generation prompt to AI...");
+               const result = await model.generateContent({
+                   contents: [{ role: "user", parts: [{ text: prompt }] }],
+                   generationConfig: { ...generationConfig, temperature: 0.5 }, // Slightly lower temp for structure
+                   safetySettings,
+               });
+               const response = result.response;
+               console.log("Received raw response from AI for SVG.");
+
+               if (!response || !response.candidates || response.candidates.length === 0 || !response.candidates[0].content) {
+                   const blockReason = response?.promptFeedback?.blockReason;
+                   const finishReason = response?.candidates?.[0]?.finishReason;
+                   const errorDetail = blockReason ? `Blocked: ${blockReason}` : (finishReason ? `Finished: ${finishReason}` : 'Empty response');
+                   console.error("AI wireframe generation failed:", errorDetail, response);
+                   throw new Error(`AI wireframe generation failed. ${errorDetail}`);
+               }
+
+               const fullSvgContent = response.text();
+               console.log("Raw SVG content from AI:\n", fullSvgContent);
+
+               let svgCode = "";
+               const svgMatch = fullSvgContent.match(/<svg[\s\S]*?<\/svg>/); // Regex to extract SVG block
+
+               if (svgMatch && svgMatch[0]) {
+                   svgCode = svgMatch[0].trim();
+                   console.log("Extracted potential SVG code:\n", svgCode);
+
+                   // Basic Cleanup (remove potential leading/trailing non-SVG text if regex didn't catch perfectly)
+                   svgCode = svgCode.replace(/^[^<]*/, '').replace(/[^>]*$/, '');
+
+                    // Add width attribute if missing for better default rendering
+                   if (!/width\s*=/.test(svgCode)) {
+                       svgCode = svgCode.replace('<svg', `<svg width="100%"`);
+                       console.log("Added width='100%' to SVG tag.");
+                   }
+
+                   // Display SVG - **CRITICAL**: Ensure container class is removed
+                   wireframeSuggestions.classList.remove('loading', 'placeholder-area', 'error');
+                   wireframeSuggestions.innerHTML = svgCode; // Use innerHTML to render SVG
+                   wireframeData = svgCode; // Store the potentially valid SVG
+                   if(proceedToRefineBtn) proceedToRefineBtn.disabled = false;
+                   console.log("Attempted to display generated wireframe.");
+
+                   // Verify if SVG actually rendered (simple check)
+                   const svgElement = wireframeSuggestions.querySelector('svg');
+                   if (!svgElement || svgElement.clientWidth === 0) {
+                       console.warn("SVG element might not be rendering correctly despite insertion.");
+                   } else {
+                       console.log("SVG element found in DOM after insertion.");
+                   }
+
+                   return svgCode;
+
+               } else {
+                    console.warn("AI response did not contain recognizable <svg> tags.", fullSvgContent);
+                    throw new Error("AI response did not contain recognizable <svg> tags.");
+               }
+
+           } catch (error) {
+               console.error("Catch block: Error generating/displaying wireframe:", error);
+               wireframeSuggestions.textContent = `Error generating wireframe: ${error.message || 'Unknown error.'}`;
+               wireframeSuggestions.classList.add('error');
+               wireframeSuggestions.classList.remove('loading', 'placeholder-area');
+               if(proceedToRefineBtn) proceedToRefineBtn.disabled = true;
+               return null;
+           }
+       }
+
+        // Stream text effect for code output
+        async function streamText(text, element, delay = 0.5) {
+            if (!element) return; // Safety check
+            element.innerHTML = ''; // Clear previous content
+            const cursor = document.createElement('span');
+            cursor.classList.add('cursor');
+            const codeStyle = window.getComputedStyle(element);
+            cursor.style.backgroundColor = codeStyle.color || '#e0d8c7';
+            element.appendChild(cursor);
+
+            let buffer = '';
+            let currentIndex = 0;
+
+            function updateText() {
+                if (currentIndex < text.length) {
+                    buffer += text[currentIndex];
+                    // Insert text node before the cursor
+                    element.insertBefore(document.createTextNode(text[currentIndex]), cursor);
+                    currentIndex++;
+                    // Auto-scroll
+                    if (element.scrollHeight > element.clientHeight) {
+                        element.scrollTop = element.scrollHeight;
+                    }
+                    // Schedule next update
+                    setTimeout(() => requestAnimationFrame(updateText), delay);
+                 } else {
+                    // Remove cursor at the end
+                    if (element.contains(cursor)) { element.removeChild(cursor); }
+                    element.scrollTop = element.scrollHeight; // Final scroll
+                 }
+            }
+
+            requestAnimationFrame(updateText); // Start streaming
+            return true; // Indicate streaming started
+        }
+
+        // --- Event Listeners Setup ---
+
+        // Sketch Upload Input Change
+        if (sketchUpload) {
+             sketchUpload.addEventListener('change', (event) => {
+                 if (event.target.files && event.target.files.length > 0) {
+                     handleFiles(event.target.files);
+                 }
+             });
+        } else { console.error("#sketch-upload element not found!"); }
+
+        // 1. Analyze Sketch Button Click
+        if (recognizeBtn) {
+            recognizeBtn.addEventListener('click', async () => {
+                if (!model) { alert("AI Model not initialized."); return; }
+                if (!uploadedFile) { alert("Please upload a sketch image first."); return; }
+
+                recognizeBtn.disabled = true;
+                recognizeBtn.textContent = 'Analyzing...';
+                // Set loading states
+                if(sketchDescriptionOutput){
+                    sketchDescriptionOutput.textContent = 'AI analyzing sketch...';
+                    sketchDescriptionOutput.classList.add('loading');
+                    sketchDescriptionOutput.classList.remove('error');
+                }
+                if(wireframeSuggestions){
+                    wireframeSuggestions.innerHTML = '';
+                    wireframeSuggestions.classList.add('placeholder-area', 'loading');
+                    wireframeSuggestions.textContent = 'Generating wireframe...';
+                }
+                if(proceedToRefineBtn) proceedToRefineBtn.disabled = true;
+
+                try {
+                    const imagePart = await fileToGenerativePart(uploadedFile);
+                    const prompt = `Analyze this hand-drawn UI sketch in detail. List out all the key features and elements in the sketch. Be specific about the layout, components, and their relative positions.`;
+
+                    const result = await model.generateContent({
+                        contents: [{ role: "user", parts: [{ text: prompt }, imagePart] }],
+                        generationConfig: { ...generationConfig, temperature: 0.2 }, // Lower temperature for more accurate/factual description
+                        safetySettings,
+                    });
+                    const response = result.response;
+
+                    if (!response?.candidates?.[0]?.content) { 
+                        throw new Error(`AI analysis failed. ${response?.promptFeedback?.blockReason || response?.candidates?.[0]?.finishReason || 'Empty response'}`); 
+                    }
+
+                    // Get the AI's description
+                    sketchDescription = response.text();
+                    
+                    // Display the description
+                    if(sketchDescriptionOutput) {
+                        sketchDescriptionOutput.textContent = sketchDescription;
+                        sketchDescriptionOutput.classList.remove('loading', 'error');
+                    }
+
+                    // Generate and display wireframe
+                    await generateWireframeSuggestion(sketchDescription);
+
+                } catch (error) {
+                    console.error("Error during sketch analysis/wireframe generation:", error);
+                    if(sketchDescriptionOutput){
+                         sketchDescriptionOutput.textContent = `Error analyzing sketch: ${error.message}`;
+                         sketchDescriptionOutput.classList.add('error');
+                         sketchDescriptionOutput.classList.remove('loading');
+                    }
+                    if(wireframeSuggestions){
+                         wireframeSuggestions.textContent = 'Wireframe generation failed.';
+                         wireframeSuggestions.classList.add('error');
+                         wireframeSuggestions.classList.remove('loading', 'placeholder-area');
+                    }
+                    if(proceedToRefineBtn) proceedToRefineBtn.disabled = true;
+                } finally {
+                    if(recognizeBtn){
+                         recognizeBtn.disabled = false;
+                         recognizeBtn.textContent = 'Analyze Sketch with AI';
+                    }
+                }
+            });
+        } else { console.error("#recognize-btn not found!"); }
+
+        // 2. Proceed to Refine Button Click
+        if (proceedToRefineBtn) {
+            proceedToRefineBtn.addEventListener('click', () => {
+                if(stepRefine) showStep(stepRefine);
+                if(chatInput) chatInput.disabled = false;
+                if(sendChatBtn) sendChatBtn.disabled = false;
+                if(finalizeWireframeBtn) finalizeWireframeBtn.disabled = false;
+
+                // Initialize Chat UI and History
+                if(chatContainer) chatContainer.innerHTML = ''; // Clear
+                const initialAIMessage = "Okay, I see the initial wireframe based on the sketch description. How would you like to refine this design? Let me know your changes!";
+                addChatMessage(initialAIMessage, false, false); // Add to UI only
+
+                chatHistory = [ // Reset history for new refinement session
+                    { role: "system", message: `You are a UI/UX design assistant helping to refine a web layout. The process started with a hand-drawn sketch. Initial sketch description: ${sketchDescription || 'N/A'}. An initial wireframe SVG was generated: ${wireframeData ? 'Yes' : 'No'}. The user will now provide instructions to modify the design.` },
+                    { role: "user", message: "I need help refining this wireframe based on the sketch." }, // Start with user message
+                    { role: "model", message: initialAIMessage } // Add initial AI message to history state
+                ];
+
+                if(stepRefine) stepRefine.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if(chatInput) chatInput.focus();
+            });
+        } else { console.error("#proceed-to-refine button not found!"); }
+
+        // 3. Send Chat Message Button Click & Enter Key
+        if (sendChatBtn && chatInput) {
+            const handleSendChat = async () => { // Wrap in async function
+                const userMessage = chatInput.value.trim();
+                if (!userMessage || !model || sendChatBtn.disabled) return;
+
+                addChatMessage(userMessage, true, true); // Add user message to UI and history
+                chatInput.value = ''; // Clear input
+                sendChatBtn.disabled = true;
+                chatInput.disabled = true;
+
+                const loadingMessageElement = addChatMessage("Thinking...", false, false, false); // Show loading state
+
+                try {
+                    // Prepare conversation history for the API (exclude system message)
+                    const conversationForAPI = chatHistory.filter(item => item.role !== 'system')
+                        .map(item => ({ role: item.role, parts: [{ text: item.message }] }));
+
+                    // Start chat using the current history
+                    const chat = model.startChat({
+                        history: conversationForAPI.slice(0, -1), // History *before* the latest user message
+                        generationConfig,
+                        safetySettings
+                    });
+                    const result = await chat.sendMessage(userMessage); // Send the latest user message
+                    const response = result.response;
+
+                    if (!response?.candidates?.[0]?.content) {
+                        throw new Error(`AI chat response failed. ${response?.promptFeedback?.blockReason || response?.candidates?.[0]?.finishReason || 'Empty response'}`);
+                    }
+                    const aiResponse = response.text();
+
+                    if (loadingMessageElement) loadingMessageElement.remove(); // Remove loading message
+                    addChatMessage(aiResponse, false, true); // Add AI response to UI and history
+
+                } catch (error) {
+                    console.error("Error in chat:", error);
+                    if (loadingMessageElement) loadingMessageElement.remove(); // Ensure removal on error
+                    addChatMessage(`Sorry, an error occurred: ${error.message}. Please try again.`, false, false, true); // Mark as error, don't add to history
+                } finally {
+                    sendChatBtn.disabled = false;
+                    chatInput.disabled = false;
+                    chatInput.focus();
+                }
+            };
+
+            sendChatBtn.addEventListener('click', handleSendChat);
+            chatInput.addEventListener('keypress', (e) => {
+                 // Send on Enter unless Shift+Enter is pressed
+                 if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault(); // Prevent default newline behavior
+                    handleSendChat();
+                 }
+            });
+
+        } else { console.error("#send-chat button or #chat-input not found!"); }
+
+        // 3b. Finalize Wireframe Button Click
+        if (finalizeWireframeBtn) {
+            finalizeWireframeBtn.addEventListener('click', async () => {
+                if (!model) return;
+
+                finalizeWireframeBtn.disabled = true;
+                finalizeWireframeBtn.textContent = 'Finalizing...';
+                const thinkingMsg = addChatMessage("Okay, summarizing the design based on our discussion to prepare for code generation...", false, false); // UI only
+
+                try {
+                    const summaryPrompt = `Based on our entire conversation (including initial sketch description, wireframe references, and our refinement chat), provide a concise bullet-point summary of the final agreed-upon UI design. Focus ONLY on the key components, layout structure, essential functionality hints, and any crucial styling points needed for a developer to generate the HTML/CSS/JS code. Be specific and actionable.`;
+
+                    // Prepare the full history for the summary generation, including system prompts as context
+                    const conversationForAPI = chatHistory.map(item => ({
+                        role: item.role === "system" ? "user" : item.role, // Treat system messages as user context for summary
+                        parts: [{ text: item.message }]
+                    }));
+                    conversationForAPI.push({ role: "user", parts: [{ text: summaryPrompt }] }); // Add the summary request
+
+                    const result = await model.generateContent({ contents: conversationForAPI, generationConfig, safetySettings });
+                    const response = result.response;
+
+                    if (!response?.candidates?.[0]?.content) { throw new Error(`AI summary generation failed. ${response?.promptFeedback?.blockReason || response?.candidates?.[0]?.finishReason || 'Empty response'}`); }
+                    const summary = response.text();
+
+                    if(thinkingMsg) thinkingMsg.remove(); // Remove thinking message
+                    addChatMessage(`Final Design Summary:\n${summary}`, false, true); // Add summary to chat & history
+                    chatHistory.push({ role: "system", message: "FINAL_SUMMARY: " + summary }); // Store marker in internal history
+
+                    // Enable Generation Step & Update UI
+                    if(stepGenerate) showStep(stepGenerate);
+                    if(generateHtmlCssBtn) generateHtmlCssBtn.disabled = false;
+                    if(stepRefine) fadeStep(stepRefine); // Fade refine step
+                    if(stepGenerate) stepGenerate.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Keep finalize button disabled after successful finalization
+                    finalizeWireframeBtn.textContent = 'Finalized';
+
+                } catch (error) {
+                    console.error("Error finalizing wireframe:", error);
+                    if(thinkingMsg) thinkingMsg.remove();
+                    addChatMessage(`Error during finalization: ${error.message}. Please try finalizing again.`, false, false, true); // Show error
+                    finalizeWireframeBtn.textContent = 'Finalize Wireframe Design'; // Reset text
+                    finalizeWireframeBtn.disabled = false; // Re-enable on error
+                }
+            });
+        } else { console.error("#finalize-wireframe button not found!"); }
+
+
+        // 4. Generate HTML/CSS Button Click
+        if (generateHtmlCssBtn) {
+            generateHtmlCssBtn.addEventListener('click', async () => {
+                if (!model) { alert("AI Model not initialized."); return; }
+
+                generateHtmlCssBtn.disabled = true;
+                generateHtmlCssBtn.textContent = 'Generating Code...';
+                if(exportCodeBtn) exportCodeBtn.disabled = true;
+                if(codeOutputPreview) {
+                     codeOutputPreview.innerHTML = ''; // Clear
+                     const thinkingCursor = document.createElement('span');
+                     thinkingCursor.classList.add('cursor');
+                     codeOutputPreview.appendChild(thinkingCursor); // Add cursor for visual feedback
+                }
+
+                try {
+                    // Find the final summary from history, or use initial description as fallback
+                    let finalSummary = "No specific refinement summary found in history.";
+                    const summaryEntry = chatHistory.findLast(item => item.role === "system" && item.message.startsWith("FINAL_SUMMARY:")); // Find last summary
+                    if (summaryEntry) {
+                         finalSummary = summaryEntry.message.substring("FINAL_SUMMARY:".length).trim();
+                    } else if (sketchDescription) {
+                         finalSummary = `Based primarily on initial sketch description: ${sketchDescription}`;
+                    }
+
+                    const codePrompt = `
+Generate a complete, single index.html file based on these UI specifications:
+
+Context:
+- Initial Sketch Description: ${sketchDescription || 'Not available'}
+- Final Design Summary/Instructions: ${finalSummary}
+- Wireframe SVG (Reference Only): ${wireframeData || 'Not available'}
+
+Requirements:
+1.  Output ONLY the complete HTML file content, starting with <!DOCTYPE html> and ending with </html>.
+2.  Do NOT include any explanatory text, comments outside the code, or markdown formatting like \`\`\`html or \`\`\`.
+3.  Use semantic HTML5 structure (header, main, section, footer, nav, article, etc. where appropriate).
+4.  Embed all CSS within a single <style> tag in the <head>.
+    - Make the layout responsive using Flexbox or Grid.
+    - Use the requested beige/brown theme colors: accent '#c0a062', background '#fdfaf5', headings '#4a3c2a', text '#6b5a44'.
+    - Use 'Inter' as the main font and 'Playfair Display' for headings (import from Google Fonts).
+    - Include helpful CSS comments.
+5.  Embed any necessary JavaScript within a single <script> tag before the closing </body>.
+    - Add placeholder functions or basic interactivity if implied by the design summary (e.g., button clicks). Comment the JS well.
+6.  Ensure the code is well-formatted and readable (proper indentation).
+7.  Use placeholder text (like "Lorem ipsum...") and placeholder image URLs (e.g., from placeholder.com or similar) if specific content isn't provided.
+8.  Adhere strictly to the layout and components described in the 'Final Design Summary/Instructions'.`;
+
+
+                    console.log("Sending code generation prompt to AI...");
+                    const result = await model.generateContent({
+                        contents: [{ role: "user", parts: [{ text: codePrompt }] }],
+                        generationConfig: codeGenerationConfig, // Use config with higher token limit
+                        safetySettings
+                    });
+                    const response = result.response;
+
+                    if (!response?.candidates?.[0]?.content) { throw new Error(`AI code generation failed. ${response?.promptFeedback?.blockReason || response?.candidates?.[0]?.finishReason || 'Empty response'}`); }
+                    let rawGeneratedCode = response.text();
+                    console.log("Received raw code from AI.");
+
+                    // Clean up potential markdown fences and leading/trailing whitespace
+                    generatedCode = rawGeneratedCode.replace(/^```(?:html)?\s*/i, '').replace(/\s*```$/, '').trim();
+
+                    // Check if it looks like HTML, warn if not, but still display
+                    if (!generatedCode.toLowerCase().startsWith('<!doctype html') && !generatedCode.toLowerCase().startsWith('<html')) {
+                        console.warn("Generated code might be missing DOCTYPE or formatted unexpectedly. Displaying as-is.");
+                        // Prepend a note in the output? Optional.
+                        // generatedCode = `/* WARNING: AI output may not be complete HTML. */\n\n` + generatedCode;
+                    }
+
+                    console.log("Cleaned code ready for display.");
+                    await streamText(generatedCode, codeOutputPreview, 0.5); // Stream the code
+                    if(exportCodeBtn) exportCodeBtn.disabled = false; // Enable export button
+
+                } catch (error) {
+                    console.error("Error generating code:", error);
+                    if(codeOutputPreview) codeOutputPreview.innerHTML = `<span class="error">Error generating code: ${error.message}</span>`;
+                    const cursor = codeOutputPreview?.querySelector('.cursor'); // Remove cursor on error
+                    if (cursor) cursor.remove();
+                } finally {
+                    if(generateHtmlCssBtn){
+                        generateHtmlCssBtn.disabled = false;
+                        generateHtmlCssBtn.textContent = 'Generate HTML/CSS/JS';
+                    }
+                }
+            });
+        } else { console.error("#generate-html-css button not found!"); }
+
+        // 4a. Export Code Button Click
+        if (exportCodeBtn) {
+            exportCodeBtn.addEventListener('click', () => {
+                if (!generatedCode) { alert("No code has been generated yet."); return; }
+                try {
+                    const blob = new Blob([generatedCode], { type: 'text/html;charset=utf-8' });
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.download = 'wirerio_generated_page.html';
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    URL.revokeObjectURL(downloadLink.href); // Clean up the object URL
+                    console.log("Code exported successfully.");
+                } catch (error) {
+                    console.error("Error exporting code:", error);
+                    alert(`Failed to export code: ${error.message}`);
+                }
+            });
+        } else { console.error("#export-code button not found!"); }
+
+        // --- Initial Page Load Setup ---
+        resetUploadState(); // Call reset on load to ensure clean state
+
+    </script>
+
+</body>
+</html>
